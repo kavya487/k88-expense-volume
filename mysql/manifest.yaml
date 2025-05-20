@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: mysql-headlsess
+  name: mysql-headless
   namespace: expense
   labels:
     app: mysql
@@ -53,7 +53,7 @@ spec:
     name: web
   clusterIP: None
   selector:
-    app: nginx
+    app: mysql
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -62,7 +62,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      labels:
+      
         app: mysql
         project: expense
         tier: db 
