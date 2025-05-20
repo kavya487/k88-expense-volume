@@ -8,7 +8,7 @@ metadata:
     project: expense
     tier: db
 spec:
-  ClusterIP: None
+  clusterIP: None
   selector:
     app: mysql
     project: expense
@@ -42,7 +42,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-headless
+  name: mysql
   labels:
     app: mysql
     project: expense
@@ -58,14 +58,13 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: nginx
+  name: mysql
 spec:
   selector:
     matchLabels:
-      
-        app: mysql
-        project: expense
-        tier: db 
+      app: mysql
+      project: expense
+      tier: db 
   serviceName: "mysql-headless"
   replicas: 2 # by default is 1
   minReadySeconds: 10 # by default is 0
